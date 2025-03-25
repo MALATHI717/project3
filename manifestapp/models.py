@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.contrib.auth.hashers import make_password, is_password_usable
 
@@ -31,6 +32,7 @@ class ManifestUser(models.Model):
         super().save(*args, **kwargs)
 
 class ManifestLetter(models.Model):
+    
     STATUS_CHOICES = [
         ("draft", "Draft"),
         ("scheduled", "Scheduled"),
