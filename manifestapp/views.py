@@ -78,15 +78,15 @@ def base_view(request):
                 # Convert date to datetime before making it timezone-aware
                 scheduled_date = make_aware(datetime.combine(scheduled_date, datetime.min.time()))
 
-            try:
-                manifest_user = ManifestUser.objects.get(email=request.user.username)
-            except ManifestUser.DoesNotExist:
-                messages.error(request, "User does not exist in ManifestUser.")
-                return redirect("signup")
+           # try:
+               # manifest_user = ManifestUser.objects.get(email=request.user.username)
+            #except ManifestUser.DoesNotExist:
+               # messages.error(request, "User does not exist in ManifestUser.")
+               # return redirect("signup")
 
             # Save data in DB
             ManifestLetter.objects.create(
-                user=manifest_user,
+                user=request.user.username,
                 content=content,
                 scheduled_date=scheduled_date,
                 status="draft",

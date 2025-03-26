@@ -41,7 +41,7 @@ class ManifestLetter(models.Model):
     ]
 
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(ManifestUser, on_delete=models.CASCADE, related_name="letters")
+    user = models.TextField()
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_sent = models.BooleanField(default=False)
@@ -49,4 +49,4 @@ class ManifestLetter(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="draft")
 
     def __str__(self):
-        return f"Letter {self.id} - {self.user.email} - {self.status}"
+        return f"Letter {self.id} - {self.user} - {self.status}"
