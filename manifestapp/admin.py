@@ -1,11 +1,16 @@
 from django.contrib import admin
-from .models import ManifestUser, ManifestLetter
+from .models import ManifestLetter
+from .models import Profile
 
-@admin.register(ManifestUser)
-class ManifestUserAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "email", "created_at")
-    search_fields = ("email", "name")
-    ordering = ("-created_at",)
+#@admin.register(ManifestUser)
+#class ManifestUserAdmin(admin.ModelAdmin):
+    #list_display = ("id", "name", "email", "created_at")
+   # search_fields = ("email", "name")
+    #ordering = ("-created_at",)
+
+
+admin.site.register(Profile)
+
 
 @admin.register(ManifestLetter)
 class ManifestLetterAdmin(admin.ModelAdmin):

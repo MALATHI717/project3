@@ -6,7 +6,8 @@ from django.contrib.auth.hashers import make_password  # Hash passwords for secu
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import ManifestUser, ManifestLetter
+from .models import  ManifestLetter
+
 from .forms import SignUpForm, ManifestLetterForm
 from django.utils.timezone import make_aware
 from datetime import datetime
@@ -30,37 +31,21 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 def signup_view(request):
-    form = SignUpForm()
-    
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            name = form.cleaned_data['name']
-            password = form.cleaned_data['password']
+            user = form.save(commit=False)
+            user.username = form.cleaned_data['email']  # Use email as username
+            user.first_name = form.cleaned_data['name']  # Store full name in first_name
+            user.save()
 
-            # Check if the user already exists
-            if User.objects.filter(username=email).exists():
-                messages.error(request, "A user with this email already exists.")
-                return render(request, 'signup.html', {'form': form})
-
-            try:
-                # Create user in Django auth system
-                user = User.objects.create_user(username=email, password=password)
-                
-                # Save to ManifestUser model
-                ManifestUser.objects.create(
-                    name=name, 
-                    email=email, 
-                    password=make_password(password)  # Hashing password for security
-                )
-
-                messages.success(request, "Account created successfully. Please log in.")
-                return redirect('login')
-
-            except IntegrityError:
-                messages.error(request, "An error occurred. This email may already be registered.")
-    
+            messages.success(request, "Account created successfully. Please log in.")
+            return redirect('login')
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = SignUpForm()
+    print("8")
     return render(request, 'signup.html', {'form': form})
 
 @login_required
