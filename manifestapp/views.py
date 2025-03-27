@@ -31,23 +31,28 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 def signup_view(request):
+    print("1")
     if request.method == 'POST':
+        print("2")
         form = SignUpForm(request.POST)
+        print("3")
         if form.is_valid():
+            print("4")
             user = form.save(commit=False)
             user.username = form.cleaned_data['email']  # Use email as username
-            user.first_name = form.cleaned_data['name']  # Store full name in first_name
             user.save()
-
+            print("5")
             messages.success(request, "Account created successfully. Please log in.")
             return redirect('login')
         else:
+            print("6")
             messages.error(request, "Please correct the errors below.")
     else:
+        print("7")
         form = SignUpForm()
     print("8")
     return render(request, 'signup.html', {'form': form})
-
+print('forms')
 @login_required
 def base_view(request):
     if request.method == "POST":

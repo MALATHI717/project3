@@ -1,15 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password, is_password_usable
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=15, blank=True, null=True)
-    bio = models.TextField(blank=True, null=True)
-    
-    def __str__(self):
-        return self.user.username
 
 # class ManifestUserManager(models.Manager):
 #     def create_user(self, email, name, password, **extra_fields):

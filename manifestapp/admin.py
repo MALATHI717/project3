@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import ManifestLetter
-from .models import Profile
 
 #@admin.register(ManifestUser)
 #class ManifestUserAdmin(admin.ModelAdmin):
@@ -8,9 +7,7 @@ from .models import Profile
    # search_fields = ("email", "name")
     #ordering = ("-created_at",)
 
-
-admin.site.register(Profile)
-
+    
 
 @admin.register(ManifestLetter)
 class ManifestLetterAdmin(admin.ModelAdmin):
