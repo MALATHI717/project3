@@ -7,10 +7,11 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import  ManifestLetter
-
 from .forms import SignUpForm, ManifestLetterForm
 from django.utils.timezone import make_aware
 from datetime import datetime
+
+
 
 def home(request):
     return render(request, 'home.html')
@@ -31,11 +32,8 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 def signup_view(request):
-    print("1")
     if request.method == 'POST':
-        print("2")
         form = SignUpForm(request.POST)
-        print("3")
         if form.is_valid():
             print("4")
             user = form.save(commit=False)
@@ -48,11 +46,9 @@ def signup_view(request):
             print("6")
             messages.error(request, "Please correct the errors below.")
     else:
-        print("7")
         form = SignUpForm()
-    print("8")
     return render(request, 'signup.html', {'form': form})
-print('forms')
+
 @login_required
 def base_view(request):
     if request.method == "POST":
