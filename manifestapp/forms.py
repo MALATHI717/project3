@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User  # Using Django's built-in User model
 from .models import ManifestLetter  # Ensure this model exists
-from .models import customUser  # Import your custom user model
+from .models import CustomUser  # Import your custom user model
 
 class SignUpForm(UserCreationForm):
     name = forms.CharField(max_length=100, required=True, label="Full Name")
@@ -10,12 +10,12 @@ class SignUpForm(UserCreationForm):
     phone = forms.CharField(max_length=15, required=True, label="Phone Number")  # Match max_length with model
 
     class Meta:
-        model = customUser  # Use customUser instead of User
+        model = CustomUser  # Use CustomUser instead of User
         fields = ["name", "email", "phone", "password1", "password2"]
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
-        if customUser.objects.filter(email=email).exists():
+        if CustomUser.objects.filter(email=email).exists():
             raise forms.ValidationError("A user with this email already exists.")
         return email
 

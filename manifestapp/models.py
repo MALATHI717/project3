@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.hashers import make_password, is_password_usable
 from django.conf import settings
 
-class customUser(AbstractUser):
+class CustomUser(AbstractUser):
     phone = models.CharField(max_length=15, blank=True, null=True)  
     def __str__(self):
         return self.username       

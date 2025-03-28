@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'manifestapp'
+    # 'manifestapp',
+    "manifestapp.apps.ManifestappConfig",
 ]
 
 
@@ -70,28 +71,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'manifest.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-#import os
-#from dotenv import load_dotenv
-
-# Load environment variables from .env file
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#load_dotenv(os.path.join(BASE_DIR, ".env"))
-
-#DATABASES = {
-    #"default": {
-      #  "ENGINE": "django.db.backends.postgresql",
-       # "NAME": os.getenv("dbname"),  
-#"USER": os.getenv("user"),  
-       # "PASSWORD": os.getenv("password"), 
-       # "HOST": os.getenv("host"),  
-       # "PORT": os.getenv("port", "5432"),  
-    #}
-#}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -142,4 +121,12 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = 'manifestapp.customUser'
+AUTH_USER_MODEL = 'manifestapp.CustomUser'
+# settings.py
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "malathi.t2002@gmail.com"
+EMAIL_HOST_PASSWORD = "tnen wyja yynh fjnp"  # Use an App Password if 2FA is enabled
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

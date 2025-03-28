@@ -1,12 +1,12 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import ManifestLetter, customUser
+from .models import ManifestLetter, CustomUser
 
 
-class customUserAdmin(UserAdmin):
+class CustomUserAdmin(UserAdmin):
     # Add 'phone' to the fields displayed in the admin
     fieldsets = UserAdmin.fieldsets + (
-        ('Custom Model Information', {'fields': ('phone',)}),
+        ('Custom Model Iformation', {'fields': ('phone',)}),
     )
     # Add 'phone' to the list display in the admin overview
     list_display = ('username', 'email', 'phone', 'is_staff')
@@ -20,5 +20,5 @@ class ManifestLetterAdmin(admin.ModelAdmin):
 
 
 # Register the models
-admin.site.register(customUser, customUserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(ManifestLetter, ManifestLetterAdmin)

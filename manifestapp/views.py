@@ -75,7 +75,7 @@ def base_view(request):
                 user=request.user.username,
                 content=content,
                 scheduled_date=scheduled_date,
-                status="draft",
+                status="scheduled"
             )
 
             messages.success(request, "Your letter has been saved as a draft.")
