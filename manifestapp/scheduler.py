@@ -39,6 +39,6 @@ def send_scheduled_emails():
 def start_scheduler():
     scheduler = BackgroundScheduler()
     # Run the job every minute to check for due emails
-    scheduler.add_job(send_scheduled_emails, "interval", minutes=5)
+    scheduler.add_job(send_scheduled_emails, "interval", minutes=300)
     scheduler.start()
     logger.info("Scheduler started.")
