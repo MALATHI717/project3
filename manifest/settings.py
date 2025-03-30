@@ -128,5 +128,5 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "malathi.t2002@gmail.com"
-EMAIL_HOST_PASSWORD = "tnen wyja yynh fjnp"  # Use an App Password if 2FA is enabled
+EMAIL_HOST_PASSWORD = "@@12345"  # Use an App Password if 2FA is enabled
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
